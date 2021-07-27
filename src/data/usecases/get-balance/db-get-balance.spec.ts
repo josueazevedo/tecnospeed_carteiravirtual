@@ -27,4 +27,12 @@ describe('DbGetBalance Usecase', () => {
     const promise = sut.get()
     await expect(promise).rejects.toThrow()
   })
+
+  test('Should return a balance in success', async () => {
+    const { sut } = makeSut()
+    const balance = await sut.get()
+    expect(balance).toEqual({
+      value: 1
+    })
+  })
 })
