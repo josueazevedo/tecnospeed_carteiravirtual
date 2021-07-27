@@ -70,4 +70,14 @@ describe('Update Category Controller', () => {
       name: 'new_name'
     })
   })
+
+  test('Should return 200 on success', async () => {
+    const { sut, fakeRequest } = makeSut()
+    const httpResponse = await sut.handle(fakeRequest)
+    expect(httpResponse.statusCode).toBe(200)
+    expect(httpResponse.body).toEqual({
+      id: 1,
+      name: 'new_name'
+    })
+  })
 })
