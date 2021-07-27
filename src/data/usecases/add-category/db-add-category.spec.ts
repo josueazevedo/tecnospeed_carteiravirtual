@@ -32,4 +32,14 @@ describe('DbAddCategory Usecase', () => {
     await sut.add(categoryData)
     expect(addSpy).toHaveBeenCalledWith(categoryData)
   })
+
+  test('Should throw if AddCategoryRepository throws', async () => {
+    const { sut, addCategoryRepositoryStub } = makeSut()
+    jest.spyOn(addCategoryRepositoryStub, 'add').mockResolvedValueOnce(new Promise((resolve, reject) => reject(new Error())))
+    const categoryData = {
+      name: 'any_name'
+    }
+    const promise = sut.add(categoryData)
+    await expect(promise).rejects.toThrow()
+  })
 })
