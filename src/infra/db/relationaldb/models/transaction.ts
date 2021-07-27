@@ -5,6 +5,7 @@ export class Transaction extends Model {
   public id!: number
   public value!: number
   public operation!: string
+  public notes?: string
   public readonly createdAt!: Date
   public readonly updatedAt!: Date
 }
@@ -23,6 +24,9 @@ Transaction.init(
     operation: {
       type: DataTypes.TEXT,
       allowNull: false
+    },
+    notes: {
+      type: DataTypes.TEXT
     }
   },
   {
