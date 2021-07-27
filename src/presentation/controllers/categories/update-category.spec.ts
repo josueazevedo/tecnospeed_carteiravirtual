@@ -50,4 +50,14 @@ describe('Update Category Controller', () => {
     expect(httpResponse.statusCode).toBe(400)
     expect(httpResponse).toEqual(badRequest(new MissingParamError('any_param')))
   })
+
+  test('Should return 500 if UpdateCategory return throws', async () => {
+    const { sut, updateCategoryStub, fakeRequest } = makeSut()
+    jest.spyOn(updateCategoryStub, 'update').mockImplementationOnce(() => {
+      throw new Error()
+    })
+    const httpResponse = await sut.handle(fakeRequest)
+    expect(httpResponse.statusCode).toBe(500)
+    expect(httpResponse.body).toEqual(new ServerError())
+  })
 })
