@@ -34,4 +34,15 @@ describe('DbAddTransaction Usecase', () => {
     await sut.add(transactionData)
     expect(addSpy).toHaveBeenCalledWith(transactionData)
   })
+
+  test('Should throw if addTransactionRepository throws', async () => {
+    const { sut, addTransactionRepositoryStub } = makeSut()
+    jest.spyOn(addTransactionRepositoryStub, 'add').mockResolvedValueOnce(new Promise((resolve, reject) => reject(new Error())))
+    const transactionData = {
+      value: 1,
+      operation: 'valid_operation'
+    }
+    const promise = sut.add(transactionData)
+    await expect(promise).rejects.toThrow()
+  })
 })
