@@ -80,4 +80,15 @@ describe('Create Transaction Controller', () => {
       operation: 'any_operation'
     })
   })
+
+  test('Should return 200 if data is provided', async () => {
+    const { sut, fakeRequest } = makeSut()
+    const httpResponse = await sut.handle(fakeRequest)
+    expect(httpResponse.statusCode).toBe(200)
+    expect(httpResponse.body).toEqual({
+      id: 1,
+      value: 1,
+      operation: 'valid_operation'
+    })
+  })
 })
