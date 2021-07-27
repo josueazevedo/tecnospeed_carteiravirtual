@@ -16,7 +16,7 @@ Category.init(
       primaryKey: true
     },
     name: {
-      type: DataTypes.DECIMAL,
+      type: DataTypes.STRING,
       allowNull: false
     }
   },
