@@ -1,4 +1,4 @@
-import { AddTransaction } from '../../../domain/usecases/add-transaction'
+import { AddTransaction } from '../../../domain/usecases/transactions/add-transaction'
 import { badRequest, ok, serverError } from '../../helpers/http-helper'
 import { Controller } from '../../protocols/controller'
 import { HttpRequest, HttpResponse } from '../../protocols/http'

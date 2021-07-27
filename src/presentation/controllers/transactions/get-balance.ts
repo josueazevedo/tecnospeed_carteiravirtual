@@ -1,4 +1,4 @@
-import { GetBalance } from '../../../domain/usecases/get-balance'
+import { GetBalance } from '../../../domain/usecases/transactions/get-balance'
 import { ok, serverError } from '../../helpers/http-helper'
 import { Controller } from '../../protocols/controller'
 import { HttpResponse } from '../../protocols/http'

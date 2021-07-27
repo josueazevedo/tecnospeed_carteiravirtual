@@ -1,5 +1,5 @@
 import { BalanceModel } from '../../../domain/models/balance'
-import { GetBalance } from '../../../domain/usecases/get-balance'
+import { GetBalance } from '../../../domain/usecases/transactions/get-balance'
 import { ServerError } from '../../errors/server-error'
 import { GetBalanceController } from './get-balance'
 

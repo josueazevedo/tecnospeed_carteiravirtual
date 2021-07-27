@@ -1,5 +1,5 @@
 import { CategoryModel } from '../../../domain/models/category'
-import { AddCategory, AddCategoryModel } from '../../../domain/usecases/add-category'
+import { AddCategory, AddCategoryModel } from '../../../domain/usecases/categories/add-category'
 import { MissingParamError } from '../../errors/missing-param-error'
 import { ServerError } from '../../errors/server-error'
 import { badRequest } from '../../helpers/http-helper'
@@ -13,7 +13,7 @@ const makeSut = (): any => {
     }
   }
   class AddCategoryStub implements AddCategory {
-    async add (transaction: AddCategoryModel): Promise<CategoryModel> {
+    async add (category: AddCategoryModel): Promise<CategoryModel> {
       const fakeCategory = {
         id: 1,
         name: 'any_name'
@@ -40,7 +40,7 @@ const makeSut = (): any => {
   }
 }
 
-describe('Create Transaction Controller', () => {
+describe('Create Category Controller', () => {
   test('Should return 400 if Validation return Missing Param', async () => {
     const { sut, validationSpy, fakeRequest } = makeSut()
     jest.spyOn(validationSpy, 'validate').mockReturnValueOnce(new MissingParamError('any_param'))

@@ -3,7 +3,7 @@ import { addTransactionRepository } from '../../../../data/protocols/add-transac
 import { GetBalanceRepository } from '../../../../data/protocols/get-balance-repository'
 import { BalanceModel } from '../../../../domain/models/balance'
 import { TransactionModel } from '../../../../domain/models/transaction'
-import { AddTransactionModel } from '../../../../domain/usecases/add-transaction'
+import { AddTransactionModel } from '../../../../domain/usecases/transactions/add-transaction'
 import { Transaction } from '../models/transaction'
 
 export class TransactionRelacionalRepository implements addTransactionRepository, GetBalanceRepository {

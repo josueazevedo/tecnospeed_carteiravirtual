@@ -1,4 +1,4 @@
-import { CategoryModel } from '../models/category'
+import { CategoryModel } from '../../models/category'
 
 export interface AddCategoryModel {
   name: string

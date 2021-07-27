@@ -1,6 +1,6 @@
 import { GetBalanceRepository } from '../../protocols/get-balance-repository'
 import { BalanceModel } from '../../../domain/models/balance'
-import { GetBalance } from '../../../domain/usecases/get-balance'
+import { GetBalance } from '../../../domain/usecases/transactions/get-balance'
 
 export class DbGetBalance implements GetBalance {
   constructor (

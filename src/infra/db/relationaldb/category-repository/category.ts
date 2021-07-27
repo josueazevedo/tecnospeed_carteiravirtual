@@ -1,6 +1,6 @@
 import { AddCategoryRepository } from '../../../../data/protocols/add-category-repository'
 import { CategoryModel } from '../../../../domain/models/category'
-import { AddCategoryModel } from '../../../../domain/usecases/add-category'
+import { AddCategoryModel } from '../../../../domain/usecases/categories/add-category'
 import { Category } from '../models/category'
 
 export class CategoryRelacionalRepository implements AddCategoryRepository {
