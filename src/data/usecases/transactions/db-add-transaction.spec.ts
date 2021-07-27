@@ -1,6 +1,6 @@
 import { TransactionModel } from '../../../domain/models/transaction'
 import { AddTransactionModel } from '../../../domain/usecases/transactions/add-transaction'
-import { addTransactionRepository } from '../../protocols/add-transaction-repository'
+import { addTransactionRepository } from '../../protocols/transactions/add-transaction-repository'
 import { DbAddTransaction } from './db-add-transaction'
 
 const makeSut = (): any => {

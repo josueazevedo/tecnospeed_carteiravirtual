@@ -1,5 +1,5 @@
 import { BalanceModel } from '../../../domain/models/balance'
-import { GetBalanceRepository } from '../../protocols/get-balance-repository'
+import { GetBalanceRepository } from '../../protocols/transactions/get-balance-repository'
 import { DbGetBalance } from './db-get-balance'
 
 const makeSut = (): any => {

@@ -1,6 +1,6 @@
 import { CategoryModel } from '../../../domain/models/category'
 import { AddCategoryModel } from '../../../domain/usecases/categories/add-category'
-import { AddCategoryRepository } from '../../protocols/add-category-repository'
+import { AddCategoryRepository } from '../../protocols/categories/add-category-repository'
 import { DbAddCategory } from './db-add-category'
 
 const makeSut = (): any => {

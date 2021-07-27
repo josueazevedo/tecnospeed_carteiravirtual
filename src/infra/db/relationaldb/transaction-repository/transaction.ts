@@ -1,6 +1,6 @@
 import { Sequelize } from 'sequelize'
-import { addTransactionRepository } from '../../../../data/protocols/add-transaction-repository'
-import { GetBalanceRepository } from '../../../../data/protocols/get-balance-repository'
+import { addTransactionRepository } from '../../../../data/protocols/transactions/add-transaction-repository'
+import { GetBalanceRepository } from '../../../../data/protocols/transactions/get-balance-repository'
 import { BalanceModel } from '../../../../domain/models/balance'
 import { TransactionModel } from '../../../../domain/models/transaction'
 import { AddTransactionModel } from '../../../../domain/usecases/transactions/add-transaction'
