@@ -31,7 +31,7 @@ describe('Get Balance Controller', () => {
     expect(httpResponse.body).toEqual(new ServerError())
   })
 
-  test('Should return 200 if data is provided', async () => {
+  test('Should return 200 if no throws', async () => {
     const { sut } = makeSut()
     const httpResponse = await sut.handle()
     expect(httpResponse.statusCode).toBe(200)
