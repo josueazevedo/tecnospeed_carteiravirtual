@@ -11,7 +11,8 @@ const makeSut = (): any => {
   const fakeRequest = {
     body: {
       value: 'any_value',
-      operation: 'any_operation'
+      operation: 'any_operation',
+      notes: 'any_notes'
     }
   }
   class AddTransactionStub implements AddTransaction {
@@ -19,7 +20,8 @@ const makeSut = (): any => {
       const fakeTransaction = {
         id: 1,
         value: 1,
-        operation: 'valid_operation'
+        operation: 'valid_operation',
+        notes: 'any_notes'
       }
       return new Promise(resolve => resolve(fakeTransaction))
     }
@@ -77,7 +79,8 @@ describe('Create Transaction Controller', () => {
     await sut.handle(fakeRequest)
     expect(addSpy).toHaveBeenCalledWith({
       value: 'any_value',
-      operation: 'any_operation'
+      operation: 'any_operation',
+      notes: 'any_notes'
     })
   })
 
@@ -88,7 +91,8 @@ describe('Create Transaction Controller', () => {
     expect(httpResponse.body).toEqual({
       id: 1,
       value: 1,
-      operation: 'valid_operation'
+      operation: 'valid_operation',
+      notes: 'any_notes'
     })
   })
 })
