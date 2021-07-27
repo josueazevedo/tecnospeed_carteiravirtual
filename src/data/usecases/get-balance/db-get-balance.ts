@@ -7,7 +7,7 @@ export class DbGetBalance implements GetBalance {
     private readonly getBalanceRepository: GetBalanceRepository
   ) {}
 
-  async get (): Promise<BalanceModel> {
+  async getBalance (): Promise<BalanceModel> {
     const balance = await this.getBalanceRepository.getBalance()
     return balance
   }

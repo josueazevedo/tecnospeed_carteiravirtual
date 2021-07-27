@@ -1,5 +1,5 @@
 import { CategoryRelacionalRepository } from '../../infra/db/relationaldb/category-repository/category'
-import { CreateCategoryController } from '../../presentation/controllers/create-category'
+import { CreateCategoryController } from '../../presentation/controllers/categories/create-category'
 import { RequiredFieldValidation } from '../../presentation/validation/validators/required-field-validation'
 
 export const makeCreateCategoryController = (): CreateCategoryController => {

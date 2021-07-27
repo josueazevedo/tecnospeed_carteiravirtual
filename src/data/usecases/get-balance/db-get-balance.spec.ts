@@ -1,6 +1,6 @@
-import { DbGetBalance } from './db-get-balance';
-import { BalanceModel } from '../../../domain/models/balance';
+import { BalanceModel } from '../../../domain/models/balance'
 import { GetBalanceRepository } from '../../protocols/get-balance-repository'
+import { DbGetBalance } from './db-get-balance'
 
 const makeSut = (): any => {
   class GetBalanceRepositoryStub implements GetBalanceRepository {
@@ -24,13 +24,13 @@ describe('DbGetBalance Usecase', () => {
   test('Should throw if GetBalanceRepository throws', async () => {
     const { sut, getBalanceRepositoryStub } = makeSut()
     jest.spyOn(getBalanceRepositoryStub, 'getBalance').mockResolvedValueOnce(new Promise((resolve, reject) => reject(new Error())))
-    const promise = sut.get()
+    const promise = sut.getBalance()
     await expect(promise).rejects.toThrow()
   })
 
   test('Should return a balance in success', async () => {
     const { sut } = makeSut()
-    const balance = await sut.get()
+    const balance = await sut.getBalance()
     expect(balance).toEqual({
       value: 1
     })

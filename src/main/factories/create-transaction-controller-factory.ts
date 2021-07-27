@@ -1,4 +1,4 @@
-import { CreateTransactionController } from '../../presentation/controllers/create-transaction'
+import { CreateTransactionController } from '../../presentation/controllers/transactions/create-transaction'
 import { RequiredFieldValidation } from '../../presentation/validation/validators/required-field-validation'
 import { ValidationComposite } from '../../presentation/validation/validators/validation-composite'
 import { Validation } from '../../presentation/protocols/validation'

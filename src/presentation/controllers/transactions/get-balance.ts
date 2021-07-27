@@ -1,7 +1,7 @@
-import { ok, serverError } from './../helpers/http-helper'
-import { GetBalance } from '../../domain/usecases/get-balance'
-import { HttpResponse } from '../protocols/http'
-import { Controller } from './../protocols/controller'
+import { GetBalance } from '../../../domain/usecases/get-balance'
+import { ok, serverError } from '../../helpers/http-helper'
+import { Controller } from '../../protocols/controller'
+import { HttpResponse } from '../../protocols/http'
 
 export class GetBalanceController implements Controller {
   constructor (

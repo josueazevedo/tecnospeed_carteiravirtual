@@ -1,9 +1,9 @@
-import { CategoryModel } from '../../domain/models/category'
-import { AddCategory, AddCategoryModel } from '../../domain/usecases/add-category'
-import { MissingParamError } from '../errors/missing-param-error'
-import { ServerError } from '../errors/server-error'
-import { badRequest } from '../helpers/http-helper'
-import { Validation } from '../protocols/validation'
+import { CategoryModel } from '../../../domain/models/category'
+import { AddCategory, AddCategoryModel } from '../../../domain/usecases/add-category'
+import { MissingParamError } from '../../errors/missing-param-error'
+import { ServerError } from '../../errors/server-error'
+import { badRequest } from '../../helpers/http-helper'
+import { Validation } from '../../protocols/validation'
 import { CreateCategoryController } from './create-category'
 
 const makeSut = (): any => {
