@@ -45,4 +45,18 @@ describe('DbAddTransaction Usecase', () => {
     const promise = sut.add(transactionData)
     await expect(promise).rejects.toThrow()
   })
+
+  test('Should return an transaction on success', async () => {
+    const { sut } = makeSut()
+    const transactionData = {
+      value: 1,
+      operation: 'in'
+    }
+    const newTransaction = await sut.add(transactionData)
+    expect(newTransaction).toEqual({
+      id: 1,
+      value: 1,
+      operation: 'in'
+    })
+  })
 })
