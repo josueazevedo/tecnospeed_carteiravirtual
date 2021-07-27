@@ -9,7 +9,8 @@ const makeSut = (): any => {
       const fakeTransaction = {
         id: 1,
         value: 1,
-        operation: 'in'
+        operation: 'in',
+        notes: 'any_notes'
       }
       return new Promise(resolve => resolve(fakeTransaction))
     }
@@ -29,7 +30,8 @@ describe('DbAddTransaction Usecase', () => {
     const addSpy = jest.spyOn(sut, 'add')
     const transactionData = {
       value: 1,
-      operation: 'valid_operation'
+      operation: 'valid_operation',
+      notes: 'any_notes'
     }
     await sut.add(transactionData)
     expect(addSpy).toHaveBeenCalledWith(transactionData)
@@ -40,7 +42,8 @@ describe('DbAddTransaction Usecase', () => {
     jest.spyOn(addTransactionRepositoryStub, 'add').mockResolvedValueOnce(new Promise((resolve, reject) => reject(new Error())))
     const transactionData = {
       value: 1,
-      operation: 'valid_operation'
+      operation: 'valid_operation',
+      notes: 'any_notes'
     }
     const promise = sut.add(transactionData)
     await expect(promise).rejects.toThrow()
@@ -50,13 +53,15 @@ describe('DbAddTransaction Usecase', () => {
     const { sut } = makeSut()
     const transactionData = {
       value: 1,
-      operation: 'in'
+      operation: 'in',
+      notes: 'any_notes'
     }
     const newTransaction = await sut.add(transactionData)
     expect(newTransaction).toEqual({
       id: 1,
       value: 1,
-      operation: 'in'
+      operation: 'in',
+      notes: 'any_notes'
     })
   })
 })
