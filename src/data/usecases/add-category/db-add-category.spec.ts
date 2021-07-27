@@ -42,4 +42,16 @@ describe('DbAddCategory Usecase', () => {
     const promise = sut.add(categoryData)
     await expect(promise).rejects.toThrow()
   })
+
+  test('Should return an category on success', async () => {
+    const { sut } = makeSut()
+    const categoryData = {
+      name: 'any_name'
+    }
+    const newCategory = await sut.add(categoryData)
+    expect(newCategory).toEqual({
+      id: 1,
+      name: 'any_name'
+    })
+  })
 })
