@@ -10,7 +10,7 @@ export class GetBalanceController implements Controller {
 
   async handle (): Promise<HttpResponse> {
     try {
-      const balance = await this.getBalance.get()
+      const balance = await this.getBalance.getBalance()
       return ok(balance)
     } catch (error) {
       return serverError()

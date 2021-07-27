@@ -10,4 +10,9 @@ describe('Body Parser Middleware', () => {
       })
       .expect(200)
   })
+
+  test('Should return an balance on success', async () => {
+    await request(app).get('/balance ')
+      .expect(200)
+  })
 })
