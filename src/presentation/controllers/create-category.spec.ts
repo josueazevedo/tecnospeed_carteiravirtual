@@ -58,4 +58,13 @@ describe('Create Transaction Controller', () => {
     expect(httpResponse.statusCode).toBe(500)
     expect(httpResponse.body).toEqual(new ServerError())
   })
+
+  test('Should call AddCategory with correct values', async () => {
+    const { sut, addCategoryStub, fakeRequest } = makeSut()
+    const addSpy = jest.spyOn(addCategoryStub, 'add')
+    await sut.handle(fakeRequest)
+    expect(addSpy).toHaveBeenCalledWith({
+      name: 'any_name'
+    })
+  })
 })
