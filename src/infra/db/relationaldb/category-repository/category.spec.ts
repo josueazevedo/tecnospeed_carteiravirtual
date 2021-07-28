@@ -29,7 +29,7 @@ describe('Category RelationalDB', () => {
     expect(upUategory).toBeNull()
   })
 
-  test('Should return an category on success', async () => {
+  test('Should return an category on update success', async () => {
     const sut = new CategoryRelacionalRepository()
     const category = await sut.add({
       name: 'any_name'
