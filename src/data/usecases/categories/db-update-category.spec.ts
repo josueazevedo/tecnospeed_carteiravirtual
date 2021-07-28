@@ -33,4 +33,15 @@ describe('DbUpdateCategory Usecase', () => {
     await sut.update(categoryData)
     expect(upSpy).toHaveBeenCalledWith(categoryData)
   })
+
+  test('Should throw if UpdateCategoryRepository throws', async () => {
+    const { sut, updateCategoryRepositoryStub } = makeSut()
+    jest.spyOn(updateCategoryRepositoryStub, 'update').mockResolvedValueOnce(new Promise((resolve, reject) => reject(new Error())))
+    const categoryData = {
+      id: 1,
+      name: 'new_name'
+    }
+    const promise = sut.update(categoryData)
+    await expect(promise).rejects.toThrow()
+  })
 })
