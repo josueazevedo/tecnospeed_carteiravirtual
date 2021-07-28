@@ -13,7 +13,7 @@ const makeSut = (): any => {
       value: 'any_value',
       operation: 'any_operation',
       notes: 'any_notes',
-      category_id: 'any_id'
+      category_id: 1
     }
   }
   class AddTransactionStub implements AddTransaction {
@@ -23,7 +23,7 @@ const makeSut = (): any => {
         value: 1,
         operation: 'valid_operation',
         notes: 'any_notes',
-        category_id: 'any_id'
+        category_id: 1
       }
       return new Promise(resolve => resolve(fakeTransaction))
     }
@@ -83,7 +83,7 @@ describe('Create Transaction Controller', () => {
       value: 'any_value',
       operation: 'any_operation',
       notes: 'any_notes',
-      category_id: 'any_id'
+      category_id: 1
     })
   })
 
@@ -96,7 +96,7 @@ describe('Create Transaction Controller', () => {
       value: 1,
       operation: 'valid_operation',
       notes: 'any_notes',
-      category_id: 'any_id'
+      category_id: 1
     })
   })
 })
