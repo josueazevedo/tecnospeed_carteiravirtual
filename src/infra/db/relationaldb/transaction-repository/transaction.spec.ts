@@ -49,4 +49,24 @@ describe('Transaction RelationalDB', () => {
     expect(balance).toBeTruthy()
     expect(balance.value).toBe('15')
   })
+
+  test('Should return an transactions on success', async () => {
+    const sut = new TransactionRelacionalRepository()
+    const category = await Category.create({ name: 'any_name' }, { raw: true })
+    await sut.add({
+      value: 20,
+      operation: 'in',
+      notes: 'any_notes',
+      category_id: category.id
+    })
+    await sut.add({
+      value: 5,
+      operation: 'out',
+      notes: 'any_notes',
+      category_id: category.id
+    })
+    const transaction = await sut.getTransactions(0, 2)
+    expect(transaction).toBeTruthy()
+    expect(transaction.count).toBe(2)
+  })
 })
