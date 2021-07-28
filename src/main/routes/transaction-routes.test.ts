@@ -15,4 +15,15 @@ describe('Transaction Router', () => {
     await request(app).get('/balance ')
       .expect(200)
   })
+
+  test('Should return an list transactions on success', async () => {
+    await request(app).post('/transaction ')
+      .send({
+        value: 1,
+        operation: 'in'
+      }).then(async () => {
+        await request(app).get('/transaction?page=0&perpage=2')
+          .expect(200)
+      })
+  })
 })
