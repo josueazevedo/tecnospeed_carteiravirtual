@@ -1,3 +1,4 @@
+import { DbAddTransaction } from '../../../data/usecases/transactions/db-add-transaction'
 import { TransactionRelacionalRepository } from '../../../infra/db/relationaldb/transaction-repository/transaction'
 import { CreateTransactionController } from '../../../presentation/controllers/transactions/create-transaction'
 import { Validation } from '../../../presentation/protocols/validation'
@@ -13,7 +14,8 @@ export const makeCreateTransactionController = (): CreateTransactionController =
   })
   validations.push(new OperationValidation())
   const validator = new ValidationComposite(validations)
-  const addTransaction = new TransactionRelacionalRepository()
-  const createTransactionController = new CreateTransactionController(validator, addTransaction)
+  const transactionRelacionalRepository = new TransactionRelacionalRepository()
+  const dbAddTransaction = new DbAddTransaction(transactionRelacionalRepository)
+  const createTransactionController = new CreateTransactionController(validator, dbAddTransaction)
   return createTransactionController
 }
