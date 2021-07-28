@@ -35,8 +35,8 @@ export class TransactionRelacionalRepository implements addTransactionRepository
         { model: Category, as: 'category', attributes: ['name'] }
       ],
       raw: true,
-      limit: 2,
-      offset: 0
+      limit: perpage,
+      offset: page
     })
 
     return listTransactions

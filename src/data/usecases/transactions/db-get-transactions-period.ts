@@ -8,10 +8,11 @@ export class DbGetTransactionsPeriod implements GetTransactionsPeriod {
   ) {}
 
   async getTransactions (page: number, perpage: number): Promise<ListModel> {
-    const transactions = await this.getTransactionsPeriodRepository.getTransactions(page, perpage)
-    const totalPages = Math.ceil(transactions.cont / perpage)
+    const offset = page ? page * perpage : 0
+    const transactions = await this.getTransactionsPeriodRepository.getTransactions(offset, perpage)
+    const totalPages = Math.ceil(transactions.count / perpage) - 1
     const listTransactions = {
-      total: transactions.cont,
+      total: transactions.count,
       data: transactions.rows,
       totalPages: totalPages,
       currentPage: page
