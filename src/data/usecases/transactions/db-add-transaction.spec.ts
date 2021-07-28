@@ -10,7 +10,8 @@ const makeSut = (): any => {
         id: 1,
         value: 1,
         operation: 'in',
-        notes: 'any_notes'
+        notes: 'any_notes',
+        category_id: 1
       }
       return new Promise(resolve => resolve(fakeTransaction))
     }
@@ -31,7 +32,8 @@ describe('DbAddTransaction Usecase', () => {
     const transactionData = {
       value: 1,
       operation: 'valid_operation',
-      notes: 'any_notes'
+      notes: 'any_notes',
+      category_id: 1
     }
     await sut.add(transactionData)
     expect(addSpy).toHaveBeenCalledWith(transactionData)
@@ -43,7 +45,8 @@ describe('DbAddTransaction Usecase', () => {
     const transactionData = {
       value: 1,
       operation: 'valid_operation',
-      notes: 'any_notes'
+      notes: 'any_notes',
+      category_id: 1
     }
     const promise = sut.add(transactionData)
     await expect(promise).rejects.toThrow()
@@ -54,14 +57,16 @@ describe('DbAddTransaction Usecase', () => {
     const transactionData = {
       value: 1,
       operation: 'in',
-      notes: 'any_notes'
+      notes: 'any_notes',
+      category_id: 1
     }
     const newTransaction = await sut.add(transactionData)
     expect(newTransaction).toEqual({
       id: 1,
       value: 1,
       operation: 'in',
-      notes: 'any_notes'
+      notes: 'any_notes',
+      category_id: 1
     })
   })
 })
