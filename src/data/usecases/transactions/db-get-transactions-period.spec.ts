@@ -30,4 +30,10 @@ describe('DbGetTransactionsList Usecase', () => {
     const promise = sut.getTransactions()
     await expect(promise).rejects.toThrow()
   })
+
+  test('Should return a transactions in success', async () => {
+    const { sut } = makeSut()
+    const transactions = await sut.getTransactions(0, 0)
+    expect(transactions).toBeTruthy()
+  })
 })
