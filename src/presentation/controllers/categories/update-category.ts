@@ -1,5 +1,5 @@
 import { UpdateCategory } from '../../../domain/usecases/categories/update-category'
-import { badRequest, ok, serverError } from '../../helpers/http-helper'
+import { badRequest, notFound, ok, serverError } from '../../helpers/http-helper'
 import { Controller } from '../../protocols/controller'
 import { HttpRequest, HttpResponse } from '../../protocols/http'
 import { Validation } from '../../protocols/validation'
@@ -20,7 +20,11 @@ export class UpdateCategoryController implements Controller {
         return badRequest(isValidOperation)
       }
       const category = await this.updateCategory.update(categoryData)
-      return ok(category)
+
+      if (category) {
+        return ok(category)
+      }
+      return notFound()
     } catch (e) {
       return serverError()
     }

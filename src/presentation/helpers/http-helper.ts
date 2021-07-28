@@ -1,3 +1,4 @@
+import { NotFoundError } from '../errors/not-found-error'
 import { ServerError } from '../errors/server-error'
 import { HttpResponse } from '../protocols/http'
 
@@ -14,4 +15,9 @@ export const serverError = (): HttpResponse => ({
 export const ok = (data: any): HttpResponse => ({
   statusCode: 200,
   body: data
+})
+
+export const notFound = (): HttpResponse => ({
+  statusCode: 404,
+  body: new NotFoundError()
 })
