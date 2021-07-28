@@ -5,7 +5,6 @@ import { OperationValidation } from '../../../presentation/validation/validators
 import { RequiredFieldValidation } from '../../../presentation/validation/validators/required-field-validation'
 import { ValidationComposite } from '../../../presentation/validation/validators/validation-composite'
 
-
 export const makeCreateTransactionController = (): CreateTransactionController => {
   const validations: Validation[] = []
   const fields = ['value', 'operation']

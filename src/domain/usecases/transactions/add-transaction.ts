@@ -1,4 +1,4 @@
-import { TransactionModel } from '../models/transaction'
+import { TransactionModel } from '../../models/transaction'
 
 export interface AddTransactionModel {
   value: number

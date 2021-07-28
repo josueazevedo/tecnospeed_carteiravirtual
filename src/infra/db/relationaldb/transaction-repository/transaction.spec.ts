@@ -1,6 +1,7 @@
 import { Transaction } from '../models/transaction'
 import { TransactionRelacionalRepository } from './transaction'
 
+
 describe('Transaction RelationalDB', () => {
   beforeAll(async () => {
     await Transaction.destroy({ where: {} })
