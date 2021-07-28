@@ -33,4 +33,22 @@ describe('Get Transactions Period Controller', () => {
     expect(httpResponse.statusCode).toBe(500)
     expect(httpResponse.body).toEqual(new ServerError())
   })
+
+  test('Should return 200 if no throws', async () => {
+    const { sut } = makeSut()
+    const anyRequest = {
+      query: {
+        page: 0,
+        perpage: 0
+      }
+    }
+    const httpResponse = await sut.handle(anyRequest)
+    expect(httpResponse.statusCode).toBe(200)
+    expect(httpResponse.body).toEqual({
+      total: 0,
+      data: [],
+      totalPages: 0,
+      currentPage: 0
+    })
+  })
 })
