@@ -1,12 +1,14 @@
 import { Sequelize } from 'sequelize'
 import { addTransactionRepository } from '../../../../data/protocols/transactions/add-transaction-repository'
 import { GetBalanceRepository } from '../../../../data/protocols/transactions/get-balance-repository'
+import { GetTransactionsPeriodRepository } from '../../../../data/protocols/transactions/get-transactions-period-repository'
 import { BalanceModel } from '../../../../domain/models/balance'
 import { TransactionModel } from '../../../../domain/models/transaction'
 import { AddTransactionModel } from '../../../../domain/usecases/transactions/add-transaction'
+import { Category } from '../models/category'
 import { Transaction } from '../models/transaction'
 
-export class TransactionRelacionalRepository implements addTransactionRepository, GetBalanceRepository {
+export class TransactionRelacionalRepository implements addTransactionRepository, GetBalanceRepository, GetTransactionsPeriodRepository {
   async add (transaction: AddTransactionModel): Promise<TransactionModel> {
     const newTransaction = await Transaction.create(transaction, { raw: true })
     return newTransaction
@@ -20,5 +22,23 @@ export class TransactionRelacionalRepository implements addTransactionRepository
       raw: true
     })
     return balance
+  }
+
+  async getTransactions (page: number, perpage: number): Promise<any> {
+    const listTransactions = await Transaction.findAndCountAll({
+      attributes: {
+        exclude: [
+          'createdAt', 'updatedAt', 'category_id'
+        ]
+      },
+      include: [
+        { model: Category, as: 'category', attributes: ['name'] }
+      ],
+      raw: true,
+      limit: 2,
+      offset: 0
+    })
+
+    return listTransactions
   }
 }
