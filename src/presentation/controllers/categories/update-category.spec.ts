@@ -3,7 +3,7 @@ import { AddCategoryModel } from '../../../domain/usecases/categories/add-catego
 import { UpdateCategory } from '../../../domain/usecases/categories/update-category'
 import { MissingParamError } from '../../errors/missing-param-error'
 import { ServerError } from '../../errors/server-error'
-import { badRequest } from '../../helpers/http-helper'
+import { badRequest, notFound } from '../../helpers/http-helper'
 import { Validation } from '../../protocols/validation'
 import { UpdateCategoryController } from './update-category'
 
@@ -79,5 +79,13 @@ describe('Update Category Controller', () => {
       id: 1,
       name: 'new_name'
     })
+  })
+
+  test('Should return 404 if not find category', async () => {
+    const { sut, fakeRequest } = makeSut()
+    jest.spyOn(sut, 'handle').mockReturnValueOnce(notFound())
+    const httpResponse = await sut.handle(fakeRequest)
+    expect(httpResponse.statusCode).toBe(404)
+    expect(httpResponse).toEqual(notFound())
   })
 })
