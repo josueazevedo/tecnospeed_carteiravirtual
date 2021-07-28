@@ -7,6 +7,7 @@ export class Transaction extends Model {
   public value!: number
   public operation!: string
   public notes?: string
+  public category_id: number
   public readonly createdAt!: Date
   public readonly updatedAt!: Date
 }
@@ -30,7 +31,11 @@ Transaction.init(
       type: DataTypes.TEXT
     },
     category_id: {
-      type: DataTypes.INTEGER
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'categories',
+        key: 'id'
+      }
     }
   },
   {
