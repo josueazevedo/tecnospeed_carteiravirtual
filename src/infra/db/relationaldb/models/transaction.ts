@@ -1,5 +1,6 @@
 import { database } from './../helpers/sequelize-helper'
 import { Model, DataTypes } from 'sequelize'
+import { Category } from './category'
 
 export class Transaction extends Model {
   public id!: number
@@ -27,6 +28,9 @@ Transaction.init(
     },
     notes: {
       type: DataTypes.TEXT
+    },
+    category_id: {
+      type: DataTypes.INTEGER
     }
   },
   {
@@ -34,3 +38,5 @@ Transaction.init(
     sequelize: database
   }
 )
+
+Transaction.belongsTo(Category, { foreignKey: 'category_id', as: 'category' })

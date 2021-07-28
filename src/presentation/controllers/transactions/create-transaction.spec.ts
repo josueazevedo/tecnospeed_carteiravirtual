@@ -12,7 +12,8 @@ const makeSut = (): any => {
     body: {
       value: 'any_value',
       operation: 'any_operation',
-      notes: 'any_notes'
+      notes: 'any_notes',
+      category_id: 'any_id'
     }
   }
   class AddTransactionStub implements AddTransaction {
@@ -21,7 +22,8 @@ const makeSut = (): any => {
         id: 1,
         value: 1,
         operation: 'valid_operation',
-        notes: 'any_notes'
+        notes: 'any_notes',
+        category_id: 'any_id'
       }
       return new Promise(resolve => resolve(fakeTransaction))
     }
@@ -80,7 +82,8 @@ describe('Create Transaction Controller', () => {
     expect(addSpy).toHaveBeenCalledWith({
       value: 'any_value',
       operation: 'any_operation',
-      notes: 'any_notes'
+      notes: 'any_notes',
+      category_id: 'any_id'
     })
   })
 
@@ -92,7 +95,8 @@ describe('Create Transaction Controller', () => {
       id: 1,
       value: 1,
       operation: 'valid_operation',
-      notes: 'any_notes'
+      notes: 'any_notes',
+      category_id: 'any_id'
     })
   })
 })
