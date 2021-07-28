@@ -3,4 +3,5 @@ export interface TransactionModel {
   value: number
   operation: string
   notes?: string
+  category_id?: number
 }

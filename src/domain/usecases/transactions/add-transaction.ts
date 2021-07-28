@@ -4,6 +4,7 @@ export interface AddTransactionModel {
   value: number
   operation: string
   notes?: string
+  category_id?: number
 }
 
 export interface AddTransaction {
