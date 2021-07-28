@@ -1,6 +1,7 @@
 import { CategoryModel } from '../../models/category'
 
 export interface UpdateCategoryModel {
+  id: number
   name: string
 }
 
