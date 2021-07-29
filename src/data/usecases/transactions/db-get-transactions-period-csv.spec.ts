@@ -1,3 +1,4 @@
+import { CsvGenerator } from '../../protocols/csv-generator'
 import { GetTransactionsPeriodCsvRepository } from '../../protocols/transactions/get-transactions-period-csv-repository'
 import { DbGetTransactionsPeriodCsv } from './db-get-transactions-period-csv'
 
@@ -9,8 +10,17 @@ const makeSut = (): any => {
     }
   }
 
+  class CsvGeneratorStuv implements CsvGenerator {
+    createCsv (data: any): any {
+      return {
+        data: 'any'
+      }
+    }
+  }
+
   const getTransactionsPeriodRepositoryStub = new GetTransactionsPeriodRepositoryStub()
-  const sut = new DbGetTransactionsPeriodCsv(getTransactionsPeriodRepositoryStub)
+  const csvGeneratorStuv = new CsvGeneratorStuv()
+  const sut = new DbGetTransactionsPeriodCsv(getTransactionsPeriodRepositoryStub, csvGeneratorStuv)
   return {
     sut,
     getTransactionsPeriodRepositoryStub
@@ -23,5 +33,11 @@ describe('DbGetTransactionsPeriodCsv Usecase', () => {
     jest.spyOn(getTransactionsPeriodRepositoryStub, 'getTransactionsFilterDate').mockResolvedValueOnce(new Promise((resolve, reject) => reject(new Error())))
     const promise = sut.getTransactionsFilterDate()
     await expect(promise).rejects.toThrow()
+  })
+
+  test('Should success if return csv data', async () => {
+    const { sut } = makeSut()
+    const data = sut.getTransactionsFilterDate()
+    await expect(data).toBeTruthy()
   })
 })
