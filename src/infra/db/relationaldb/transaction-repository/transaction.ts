@@ -1,5 +1,4 @@
-import { Op } from 'sequelize'
-import { Sequelize } from 'sequelize'
+import { Op, Sequelize } from 'sequelize'
 import { addTransactionRepository } from '../../../../data/protocols/transactions/add-transaction-repository'
 import { GetBalanceRepository } from '../../../../data/protocols/transactions/get-balance-repository'
 import { GetTransactionsPeriodRepository } from '../../../../data/protocols/transactions/get-transactions-period-repository'
