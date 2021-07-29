@@ -30,4 +30,15 @@ describe('DbGetCategory Usecase', () => {
     const promise = sut.getCategories()
     await expect(promise).rejects.toThrow()
   })
+
+  test('Should return a categories in success', async () => {
+    const { sut } = makeSut()
+    const categories = await sut.getCategories()
+    expect(categories).toEqual([
+      {
+        id: 1,
+        name: 'any_name'
+      }
+    ])
+  })
 })
