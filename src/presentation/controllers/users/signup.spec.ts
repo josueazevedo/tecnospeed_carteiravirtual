@@ -74,4 +74,16 @@ describe('Signup Controller', () => {
     expect(httpResponse.statusCode).toBe(500)
     expect(httpResponse.body).toEqual(new ServerError())
   })
+
+  test('Should return 200 if data is provided', async () => {
+    const { sut, fakeRequest } = makeSut()
+    const httpResponse = await sut.handle(fakeRequest)
+    expect(httpResponse.statusCode).toBe(200)
+    expect(httpResponse.body).toEqual({
+      id: 1,
+      name: 'any_name',
+      user: 'any_value',
+      password: 'any_password'
+    })
+  })
 })
