@@ -50,7 +50,7 @@ describe('Transaction RelationalDB', () => {
     expect(balance.value).toBe('15')
   })
 
-  test('Should return an transactions on success', async () => {
+  test('Should return transactions on success', async () => {
     const sut = new TransactionRelacionalRepository()
     const category = await Category.create({ name: 'any_name' }, { raw: true })
     await sut.add({
@@ -65,7 +65,27 @@ describe('Transaction RelationalDB', () => {
       notes: 'any_notes',
       category_id: category.id
     })
-    const transaction = await sut.getTransactions(0, 2, '2020-01-01', '2022-01-01')
+    const transaction = await sut.getTransactions(0, 2, '2020-01-01', '3022-01-01')
+    expect(transaction).toBeTruthy()
+    expect(transaction.count).toBe(2)
+  })
+
+  test('Should return transactions from date interval on success', async () => {
+    const sut = new TransactionRelacionalRepository()
+    const category = await Category.create({ name: 'any_name' }, { raw: true })
+    await sut.add({
+      value: 20,
+      operation: 'in',
+      notes: 'any_notes',
+      category_id: category.id
+    })
+    await sut.add({
+      value: 5,
+      operation: 'out',
+      notes: 'any_notes',
+      category_id: category.id
+    })
+    const transaction = await sut.getTransactionsFilterDate('2020-01-01', '3050-01-01')
     expect(transaction).toBeTruthy()
     expect(transaction.count).toBe(2)
   })
