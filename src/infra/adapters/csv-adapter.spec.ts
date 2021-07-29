@@ -19,4 +19,10 @@ describe('CsvGenerator Adapter', () => {
     sut.createCsv('any_data', ['any_fiels'])
     expect(csvSpy).toBeCalledWith('any_data', ['any_fiels'])
   })
+
+  test('Should createCsv return data on success', () => {
+    const sut = makeSut()
+    const csv = sut.createCsv('any_data', ['any_fiels'])
+    expect(csv).toBeTruthy()
+  })
 })
