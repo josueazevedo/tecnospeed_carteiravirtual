@@ -13,4 +13,10 @@ describe('Encryter Adapter', () => {
     sut.encrypt('any_data')
     expect(encryotSpy).toBeCalledWith('any_data', 12)
   })
+
+  test('Should EncrypterAdapter return data on success', () => {
+    const sut = makeSut()
+    const csv = sut.encrypt('any_data', 12)
+    expect(csv).toBeTruthy()
+  })
 })
