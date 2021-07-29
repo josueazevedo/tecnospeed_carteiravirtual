@@ -50,7 +50,7 @@ describe('Get Transactions Period Csv Controller', () => {
     const anyRequest = {
       query: {
         page: 0,
-        perpage: 0
+        perpage: 2
       }
     }
     const httpResponse = await sut.handle(anyRequest)
