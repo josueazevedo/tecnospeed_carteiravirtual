@@ -1,3 +1,4 @@
+import { AccountModel } from '../../../domain/models/user'
 import { MissingParamError } from '../../errors/missing-param-error'
 import { badRequest } from '../../helpers/http-helper'
 import { Validation } from '../../protocols/validation'
@@ -6,9 +7,9 @@ import { SignupController } from './signup'
 const makeSut = (): any => {
   const fakeRequest = {
     body: {
+      name: 'any_name',
       user: 'any_value',
-      password: 'any_password',
-      passwordConfirmation: 'any_pasword'
+      password: 'any_password'
     }
   }
   class ValidationSpy implements Validation {
@@ -20,12 +21,26 @@ const makeSut = (): any => {
       return this.error
     }
   }
+
+  class AddAccount implements AddAccount {
+    async add (AddAccountModel): Promise<AccountModel> {
+      const fakeAccount = {
+        id: 1,
+        name: 'any_name',
+        user: 'any_value',
+        password: 'any_password'
+      }
+      return new Promise(resolve => resolve(fakeAccount))
+    }
+  }
   const validationSpy = new ValidationSpy()
-  const sut = new SignupController(validationSpy)
+  const addAccountSpy = new AddAccount()
+  const sut = new SignupController(validationSpy, addAccountSpy)
   return {
     sut,
     validationSpy,
-    fakeRequest
+    fakeRequest,
+    addAccountSpy
   }
 }
 
@@ -36,5 +51,16 @@ describe('Signup Controller', () => {
     const httpResponse = await sut.handle(fakeRequest)
     expect(httpResponse.statusCode).toBe(400)
     expect(httpResponse).toEqual(badRequest(new MissingParamError('any_param')))
+  })
+
+  test('Should call AddAccount with correct values', async () => {
+    const { sut, addAccountSpy, fakeRequest } = makeSut()
+    const addSpy = jest.spyOn(addAccountSpy, 'add')
+    await sut.handle(fakeRequest)
+    expect(addSpy).toHaveBeenCalledWith({
+      name: 'any_name',
+      user: 'any_value',
+      password: 'any_password'
+    })
   })
 })
