@@ -18,12 +18,10 @@ export class GetTransactionsListCsvController implements Controller {
       if (isValidOperation) {
         return badRequest(isValidOperation)
       }
-      const page = httpRequest?.query?.page
-      const perpage = httpRequest?.query?.perpage
       const startDate = httpRequest?.query?.startdate
       const endDate = httpRequest?.query?.enddate
 
-      const transactions = await this.getTransactions.getTransactions(page, perpage, startDate, endDate)
+      const transactions = await this.getTransactions.getTransactionsFilterDate(startDate, endDate)
       return ok(transactions)
     } catch (error) {
       return serverError()
