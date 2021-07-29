@@ -1,3 +1,3 @@
 export interface CsvGenerator {
-  createCsv: (data: any) => any
+  createCsv: (data: any, fields: any[]) => any
 }
