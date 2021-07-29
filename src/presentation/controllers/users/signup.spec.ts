@@ -1,5 +1,6 @@
 import { AccountModel } from '../../../domain/models/user'
 import { MissingParamError } from '../../errors/missing-param-error'
+import { ServerError } from '../../errors/server-error'
 import { badRequest } from '../../helpers/http-helper'
 import { Validation } from '../../protocols/validation'
 import { SignupController } from './signup'
@@ -62,5 +63,15 @@ describe('Signup Controller', () => {
       user: 'any_value',
       password: 'any_password'
     })
+  })
+
+  test('Should return 500 if addAccount return throws', async () => {
+    const { sut, addAccountSpy, fakeRequest } = makeSut()
+    jest.spyOn(addAccountSpy, 'add').mockImplementationOnce(() => {
+      throw new Error()
+    })
+    const httpResponse = await sut.handle(fakeRequest)
+    expect(httpResponse.statusCode).toBe(500)
+    expect(httpResponse.body).toEqual(new ServerError())
   })
 })
