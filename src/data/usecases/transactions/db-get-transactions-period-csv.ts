@@ -11,7 +11,8 @@ export class DbGetTransactionsPeriodCsv implements GetTransactionsPeriodCsv {
   async getTransactionsFilterDate (startDate: string, endDate: string): Promise<any> {
     const transactions = await this.getTransactionsPeriodRepository.getTransactionsFilterDate(startDate, endDate)
     const data = transactions.rows
-    const csv = this.csvGenerator.createCsv(data)
+    const fields = ['transaction_id', 'value', 'operation', 'notes', 'category']
+    const csv = this.csvGenerator.createCsv(data, fields)
     return csv
   }
 }
