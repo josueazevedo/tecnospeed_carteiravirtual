@@ -22,7 +22,7 @@ describe('Transaction Router', () => {
         value: 1,
         operation: 'in'
       }).then(async () => {
-        await request(app).get('/transaction?page=0&perpage=2')
+        await request(app).get('/transaction?page=0&perpage=2&startdate=2020-01-01&enddate=2022-01-01')
           .expect(200)
       })
   })

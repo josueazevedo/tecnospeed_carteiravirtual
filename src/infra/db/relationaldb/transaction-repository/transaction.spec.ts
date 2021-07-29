@@ -65,7 +65,7 @@ describe('Transaction RelationalDB', () => {
       notes: 'any_notes',
       category_id: category.id
     })
-    const transaction = await sut.getTransactions(0, 2)
+    const transaction = await sut.getTransactions(0, 2, '2020-01-01', '2022-01-01')
     expect(transaction).toBeTruthy()
     expect(transaction.count).toBe(2)
   })

@@ -1,6 +1,7 @@
 import { ListModel } from '../../../domain/models/list-model'
 import { GetTransactionsPeriod } from '../../../domain/usecases/transactions/get-transaction-period'
 import { ServerError } from '../../errors/server-error'
+import { Validation } from '../../protocols/validation'
 import { GetTransactionsListController } from './get-transactions-list'
 
 const makeSut = (): any => {
@@ -15,8 +16,18 @@ const makeSut = (): any => {
       return new Promise(resolve => resolve(fakeTransactions))
     }
   }
+  class ValidationSpy implements Validation {
+    error: Error = null
+    input: any
+
+    validate (input: string): Error {
+      this.input = input
+      return this.error
+    }
+  }
+  const validationSpy = new ValidationSpy()
   const getTransactionsPeriodStub = new GetTransactionsPeriodStub()
-  const sut = new GetTransactionsListController(getTransactionsPeriodStub)
+  const sut = new GetTransactionsListController(validationSpy, getTransactionsPeriodStub)
   return {
     sut,
     getTransactionsPeriodStub

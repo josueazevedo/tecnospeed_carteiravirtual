@@ -1,3 +1,4 @@
+import { Op } from 'sequelize'
 import { Sequelize } from 'sequelize'
 import { addTransactionRepository } from '../../../../data/protocols/transactions/add-transaction-repository'
 import { GetBalanceRepository } from '../../../../data/protocols/transactions/get-balance-repository'
@@ -24,7 +25,7 @@ export class TransactionRelacionalRepository implements addTransactionRepository
     return balance
   }
 
-  async getTransactions (page: number, perpage: number): Promise<any> {
+  async getTransactions (page: number, perpage: number, startDate: string, endDate: string): Promise<any> {
     const listTransactions = await Transaction.findAndCountAll({
       attributes: {
         exclude: [
@@ -34,6 +35,9 @@ export class TransactionRelacionalRepository implements addTransactionRepository
       include: [
         { model: Category, as: 'category', attributes: ['name'] }
       ],
+      where: {
+        createdAt: { [Op.between]: [startDate, endDate] },
+      },
       raw: true,
       limit: perpage,
       offset: page
