@@ -1,14 +1,17 @@
 import { GetTransactionsPeriodCsv } from '../../../domain/usecases/transactions/get-transaction-period-csv'
+import { CsvGenerator } from '../../protocols/csv-generator'
 import { GetTransactionsPeriodCsvRepository } from '../../protocols/transactions/get-transactions-period-csv-repository'
 
 export class DbGetTransactionsPeriodCsv implements GetTransactionsPeriodCsv {
   constructor (
-    private readonly getTransactionsPeriodRepository: GetTransactionsPeriodCsvRepository
+    private readonly getTransactionsPeriodRepository: GetTransactionsPeriodCsvRepository,
+    private readonly csvGenerator: CsvGenerator
   ) {}
 
   async getTransactionsFilterDate (startDate: string, endDate: string): Promise<any> {
     const transactions = await this.getTransactionsPeriodRepository.getTransactionsFilterDate(startDate, endDate)
-    const csv = transactions.rows
+    const data = transactions.rows
+    const csv = this.csvGenerator.createCsv(data)
     return csv
   }
 }
