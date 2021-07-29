@@ -1,5 +1,5 @@
 import { Parser } from 'json2csv'
-import { CsvGenerator } from '../../data/protocols/csv-generator';
+import { CsvGenerator } from '../../data/protocols/csv-generator'
 
 export class CsvGeneratorAdapter implements CsvGenerator {
   createCsv (data: any, fields: any[]): any {
