@@ -9,7 +9,7 @@ export class DbGetTransactionsPeriod implements GetTransactionsPeriod {
 
   async getTransactions (page: number, perpage: number, startDate: string, endDate: string): Promise<ListModel> {
     const offset = page ? page * perpage : 0
-    const limit = perpage | 10
+    const limit = perpage
     const transactions = await this.getTransactionsPeriodRepository.getTransactions(offset, limit, startDate, endDate)
     const totalPages = Math.ceil(transactions.count / limit) - 1
     const listTransactions = {

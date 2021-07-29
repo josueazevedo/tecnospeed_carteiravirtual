@@ -1,3 +1,4 @@
+import sequelize from 'sequelize'
 import { Op, Sequelize } from 'sequelize'
 import { addTransactionRepository } from '../../../../data/protocols/transactions/add-transaction-repository'
 import { GetBalanceRepository } from '../../../../data/protocols/transactions/get-balance-repository'
@@ -29,7 +30,7 @@ export class TransactionRelacionalRepository implements addTransactionRepository
     const listTransactions = await Transaction.findAndCountAll({
       attributes: {
         exclude: [
-          'createdAt', 'updatedAt', 'category_id'
+          'updatedAt', 'category_id'
         ]
       },
       include: [
@@ -38,6 +39,9 @@ export class TransactionRelacionalRepository implements addTransactionRepository
       where: {
         createdAt: { [Op.between]: [startDate, endDate] }
       },
+      order: [
+        ['updatedAt', 'DESC']
+      ],
       raw: true,
       limit: perpage,
       offset: page
@@ -50,7 +54,10 @@ export class TransactionRelacionalRepository implements addTransactionRepository
     const listTransactions = await Transaction.findAndCountAll({
       attributes: {
         exclude: [
-          'createdAt', 'updatedAt', 'category_id'
+          'updatedAt', 'category_id'
+        ],
+        include: [
+          [Sequelize.col('category.name'), 'category']
         ]
       },
       include: [
@@ -59,6 +66,9 @@ export class TransactionRelacionalRepository implements addTransactionRepository
       where: {
         createdAt: { [Op.between]: [startDate, endDate] }
       },
+      order: [
+        ['updatedAt', 'DESC']
+      ],
       raw: true
     })
 
