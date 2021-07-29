@@ -41,4 +41,13 @@ describe('Category RelationalDB', () => {
     expect(category).toBeTruthy()
     expect(upUategory.name).toBe('new_name')
   })
+
+  test('Should return an categories list on success', async () => {
+    const sut = new CategoryRelacionalRepository()
+    await sut.add({
+      name: 'any_name'
+    })
+    const categories = sut.getCategories()
+    expect(categories).toBeTruthy()
+  })
 })
