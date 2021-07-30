@@ -8,5 +8,5 @@ export default (app: Express): void => {
   transactionRoutes(router)
   categoryRoutes(router)
   userRouter(router)
-  app.use('', router)
+  app.use('/api', router)
 }
