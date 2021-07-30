@@ -31,7 +31,7 @@ $ npm start
 
 # O servidor inciará na porta:4000 - acesse <http://localhost:4000>
 
-### Acesse http://localhost:420
+### Acesse pelo navegador http://localhost:4200
 ```
 
 <h3 id="tecnologias"> ### 🛠 Tecnologias </h3>
